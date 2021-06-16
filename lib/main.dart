@@ -3,13 +3,15 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter_app/Elements/horizontal_listview.dart';
 import 'package:flutter_app/Elements/products.dart';
 import 'package:flutter_app/pages/cart.dart';
+import 'package:flutter_app/pages/Start.dart';
 
 
 void main(){
   runApp(
     new MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      // home: HomePage(),
+      home: Start(),
     )
     );
   }

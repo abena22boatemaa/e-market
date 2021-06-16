@@ -1,21 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/category_details.dart';
+import 'package:flutter_app/pages/categories_details.dart';
 
-  class HorizontalList extends StatelessWidget {
+class HorizontalList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40.0,
+      height: 120.0,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
           Category(
-            image_image: 'images/cat1.png',
+            image_image: 'images/catv.png',
             image_caption: 'Vegetable',
           ),
           Category(
-            image_image: 'images/cat2.png',
+            image_image: 'images/catf.png',
             image_caption: 'Fruit',
           ),
         ],
@@ -39,16 +39,21 @@ class Category extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(padding: const EdgeInsets.all(2.0),
-    child: InkWell(onTap:() => Navigator.of(context).push(new MaterialPageRoute(
-        builder: (context) => new CategoriesDetails(),
-    ),),
+    child: InkWell(
+        onTap:(){
+          Navigator.push(context, MaterialPageRoute(builder:
+              (context) => new CategoryDetails()));
+        },
     child: Container(
-    width: 80.0,
+    width: 200.0,
     child: ListTile(
       title: Image.asset(image_image,
-        width: 40.0,
-        height: 40.0,),
-      subtitle: Text(image_caption),
+        width: 130.0,
+        height: 100.0,),
+      subtitle: Text(image_caption, style:
+      TextStyle(fontWeight: FontWeight.bold,
+          fontSize: 18.0, color: Colors.black54),
+    ),
     ),
     ),
     ),
