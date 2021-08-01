@@ -12,37 +12,32 @@ class _ProductsState extends State<Products> {
     {
       "name": "Apple",
       "picture": "images/recent products/apple.jpg",
-      "old_price": 3.5,
       "price": 2.0,
+
     },
     {
       "name": "Pineapple",
       "picture": "images/recent products/pineapple.png",
-      "old_price": 9.0,
       "price": 6.0,
     },
     {
-      "name": "Tomato",
-      "picture": "images/recent products/tomato.png",
-      "old_price": 5.0,
+      "name": "Beetroot",
+      "picture": "images/recent products/beetroot.jpg",
       "price": 3.5,
     },
     {
-      "name": "Cabbage",
-      "picture": "images/recent products/cabbage.png",
-      "old_price": 5.0,
+      "name": "Strawberry",
+      "picture": "images/recent products/images.jpg",
       "price": 4.0,
     },
     {
       "name": "Pawpaw",
       "picture": "images/recent products/pawpaw.jpg",
-      "old_price": 5.0,
       "price": 2.0,
     },
     {
       "name": "Mango",
       "picture": "images/recent products/mango.jpg",
-      "old_price": 5.0,
       "price": 3.0,
     },
   ];
@@ -55,12 +50,9 @@ class _ProductsState extends State<Products> {
             new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemBuilder: (BuildContext context, int index) {
           return Padding(
-            padding: const EdgeInsets.all(4.0),
+            padding: const EdgeInsets.all(0.0),
             child: Single_prod(
-              prod_name: product_list[index]['name'],
-              prod_picture: product_list[index]['picture'],
-              prod_old_price: product_list[index]['old_price'],
-              prod_price: product_list[index]['price'],
+              product: product_list[index],
             ),
           );
         });
@@ -68,54 +60,43 @@ class _ProductsState extends State<Products> {
 }
 
 class Single_prod extends StatelessWidget {
-  final prod_name;
-  final prod_picture;
-  final prod_old_price;
-  final prod_price;
+  final product;
 
   Single_prod({
-    this.prod_name,
-    this.prod_picture,
-    this.prod_old_price,
-    this.prod_price,
+    this.product
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Hero(
-        tag: prod_name,
-        child: Material(
-          child: InkWell(
-            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-              // passing the values of the product to product details page
-                builder: (context) => new ProductDetails(
-                  product_detail_name: prod_name,
-                  product_detail_new_price: prod_price,
-                  product_detail_old_price: prod_old_price,
-                  product_detail_Picture: prod_picture,
-                ))),
-            child: GridTile(
-              footer: Container(
+      child: Material(
+        child: InkWell(
+          onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+            // passing the values of the product to product details page
+              builder: (context) => new ProductDetails(
+               product: product,
+              ))),
+          child: GridTile(
+            footer: Padding(
+              padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+              child: Container(
                 color: Colors.white,
                 child: new Row(
                   children: <Widget>[
                     Expanded(
-                      child: new Text(prod_name, style: TextStyle(color:Colors.black,
-                          fontWeight: FontWeight.bold,
-                      fontSize: 18.0),),
+                      child: new Text( product['name'], style: TextStyle(color:Colors.black,
+                      fontSize: 15.0),),
                     ),
 
-                    new Text("\$${prod_price}", style: TextStyle(color:Colors.red,
-                        fontWeight: FontWeight.bold,
-                       fontSize: 16.0),)
+                    new Text("GHS ${product['price']}", style: TextStyle(color:Colors.red,
+                       fontSize: 15.0),)
                   ],
                 ),
               ),
-              child: Image.asset(
-                prod_picture,
-                fit: BoxFit.cover,
-              ),
+            ),
+            child: Image.asset(
+              product['picture'],
+              fit: BoxFit.cover,
             ),
           ),
         ),

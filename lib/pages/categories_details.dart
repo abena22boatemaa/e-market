@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/cart.dart';
-import 'package:flutter_app/main.dart';
+import 'package:flutter_app/pages/home_page.dart';
 import 'package:flutter_app/Elements/fruitscat.dart';
 import 'package:flutter_app/Elements/veggiescat.dart';
 import 'package:flutter_app/Elements/exoticcat.dart';
@@ -28,7 +28,7 @@ class CategoryDetails extends StatelessWidget {
                 icon: Icon(Icons.add_shopping_cart, color: Colors.white,),
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder:
-                      (context) => new Cart()));
+                      (context) => new CartPage()));
                 })
           ],
           bottom: TabBar(tabs: [

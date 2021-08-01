@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import'package:flutter_app/Elements/cart_product.dart';
+import 'package:flutter_app/providers/cartProvider.dart';
+import 'package:provider/provider.dart';
 
-class Cart extends StatefulWidget {
+class CartPage extends StatefulWidget {
   @override
-  _CartState createState() => _CartState();
+  _CartPageState createState() => _CartPageState();
 }
 
-class _CartState extends State<Cart> {
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context);
     return Scaffold(
           appBar: new AppBar(
       elevation: 0.0,
-      backgroundColor: Colors.red,
+      backgroundColor: Colors.blue,
       title: Text('Shopping cart'),
       actions: <Widget>[
         new IconButton(icon: Icon(Icons.search, color: Colors.white,),
@@ -27,13 +30,13 @@ class _CartState extends State<Cart> {
           children: <Widget>[
             Expanded(child: ListTile(
               title: new Text("Total"),
-              subtitle: new Text("\$230"),
+              subtitle: new Text("GHS ${cart.totalAmount}", style: TextStyle(color: Colors.red),),
             )),
 
             Expanded(
               child: new MaterialButton(onPressed: (){},
     child: new Text("Check out", style: TextStyle(color: Colors.white),),
-    color: Colors.red,),
+    color: Colors.blue,),
             )
           ],
         ),
